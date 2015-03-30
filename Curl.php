@@ -113,6 +113,15 @@ class Curl
         if (isset($options['ca_path'])) {
             curl_setopt($this->ch, CURLOPT_CAPATH, $options['ca_path']);
         }
+
+        foreach ($options as $key => $value) {
+            if (0 === strpos(strtoupper($key), 'CURLOPT_')) {
+                if (!defined(strtoupper($key))) {
+                    throw new \Exception(sprintf('%s is not a valid CURL option', strtoupper($key)));
+                }
+                curl_setopt($this->ch, constant(strtoupper($key)), $value);
+            }
+        }
     }
 
     /**
