@@ -135,12 +135,12 @@ class SoapClient extends \SoapClient
         $soapAction = $soapRequest->getAction();
         if (SOAP_1_1 == $soapVersion) {
             $headers = array(
-                'Content-Type:' . $soapRequest->getContentType(),
+                'Content-Type: ' . $soapRequest->getContentType(),
                 'SOAPAction: "' . $soapAction . '"',
             );
         } else {
             $headers = array(
-               'Content-Type:' . $soapRequest->getContentType() . '; action="' . $soapAction . '"',
+               'Content-Type: ' . $soapRequest->getContentType() . '; action="' . $soapAction . '"',
             );
         }
 
