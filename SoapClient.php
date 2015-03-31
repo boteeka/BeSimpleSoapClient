@@ -208,7 +208,7 @@ class SoapClient extends \SoapClient
         $soapResponse = $this->__doRequest2($soapRequest);
 
         // return SOAP response to ext/soap
-        return $soapResponse->getContent();
+        return $soapResponse->getContent() ?: '';
     }
 
     /**
