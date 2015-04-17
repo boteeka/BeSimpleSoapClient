@@ -36,7 +36,9 @@ class SoapRequest extends CommonSoapRequest
     {
         $request = new SoapRequest();
         // $content is if unmodified from SoapClient not a php string type!
-        $request->setContent((string) $content);
+        $dom               = dom_import_simplexml(simplexml_load_string((string) $content))->ownerDocument;
+        $dom->formatOutput = true;
+        $request->setContent($dom->saveXML());
         $request->setLocation($location);
         $request->setAction($action);
         $request->setVersion($version);
